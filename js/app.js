@@ -21,7 +21,7 @@ function adicionar() {
     const quantidade = Number(entrada.value); // Converter quantidade para número
 
     // Validar a quantidade
-    if (quantidade <= 0) {
+    if (isNaN(quantidade) || quantidade <= 0) {
         alert("Por favor, insira uma quantidade válida (maior que 0)");
         return;
     }
