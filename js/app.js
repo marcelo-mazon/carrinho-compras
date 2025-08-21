@@ -6,6 +6,12 @@ function adicionar() {
     const listaDeProdutos = document.getElementById('produto');
     const produtoSelecionado = listaDeProdutos.value;
 
+    // Validar o produto selecionado
+    if (!produtoSelecionado || produtoSelecionado === "" || !produtoSelecionado.includes(" - R$")) {
+        alert("Por favor, selecione um produto válido");
+        return;
+    }
+
     // Separar o valor em nome do produto e preço
     const [nomeProduto, precoProduto] = produtoSelecionado.split(' - R$');
     const preco = Number(precoProduto); // Converter preço para número, ex.: 1400
@@ -20,14 +26,12 @@ function adicionar() {
         return;
     }
 
-    
     // Adicionar o produto ao carrinho
     const carrinho = document.getElementById("lista-produtos");
     carrinho.innerHTML = carrinho.innerHTML + `<section class="carrinho__produtos__produto">
           <span class="texto-azul">${quantidade}x</span> ${nomeProduto} <span class="texto-azul">R$${preco}</span>
         </section>`;
     
-
     // Atualizar o valor total
     valorTotal += quantidade * preco; // Somar o valor do novo produto
     const elementoTotal = document.getElementById("valor-total");
@@ -35,7 +39,6 @@ function adicionar() {
 
     // Limpar o campo de quantidade
     entrada.value = "";
-
 }
 
 function limpar() {
